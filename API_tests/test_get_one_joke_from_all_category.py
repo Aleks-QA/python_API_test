@@ -7,6 +7,7 @@ class TestGetJoke:
 
         response = requests.get("https://api.chucknorris.io/jokes/categories")  # получить список категорий
         list_category = response.json()
+        print(f"\nСписок категорий - {list_category}\n")
 
         assert response.status_code == 200, "Wrong status code"
 
