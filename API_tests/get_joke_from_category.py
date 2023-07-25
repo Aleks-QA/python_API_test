@@ -1,5 +1,13 @@
 import requests
 
+# 1. Запросить у пользователя категорию, на которую он хочет получить шутку (не сами сохранить в переменную,
+# а через input() и ввести в терминале
+#
+# 2. Отправить запрос для получения всех категорий
+#
+# 3. убедиться что данная категория (из пункта 1) есть в ответе запроса (отправленного в пункте 2)
+#
+# 4. Отправить запрос для получения шутки, которую запросил пользователь
 
 class GetJoke:
     def test_get_one_joke_from_input_category(self, input_category):
@@ -26,28 +34,3 @@ input_category = str(input("\nВведите категорию - "))
 test_get_joke = GetJoke()
 test_get_joke.test_get_one_joke_from_input_category(input_category)
 
-
-
-
-
-
-
-
-
-
-
-    # def test_get_one_joke_from_input_category(self):
-    #     """Получить одну шутку из вводимой категории"""
-    #     while True:
-    #         input_category = str(input())
-    #         if input_category in list_category:
-    #             print("Такая категория есть")
-    #             params = {"category": input_category}
-    #             response = requests.get("https://api.chucknorris.io/jokes/random", params=params)
-    #             print(f"Категория - {response.json()['categories']},\nШутка -  {response.json()['value']} \n")
-    #
-    #             assert response.status_code == 200, "Wrong status code"
-    #             assert response.json()['categories'] == [input_category], "Wrong joke category"
-    #         else:
-    #             print("Такой категории не найдено, попробуйте еще раз")
-    #             continue

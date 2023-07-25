@@ -1,5 +1,8 @@
 import requests
 
+# 1. Отправить запрос для получения всех категорий
+#
+# 2. Получить 1 шутку по каждой из категорий (16 шт) - всего 16 шуток
 
 class TestGetJoke:
     def test_get_one_joke_from_all_category_(self):
