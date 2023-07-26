@@ -9,6 +9,7 @@ key = "?key=qaclick123"  # Параметр для всех запросов
 
 
 class GoogleMapsApi:
+    """Основные методы для работы с локациями"""
 
     @staticmethod
     def create_new_place():
@@ -32,9 +33,9 @@ class GoogleMapsApi:
         post_resource = '/maps/api/place/add/json'  # ресурс метода POST
         post_url = base_url + post_resource
         print(post_url)
-        post_response = HttpMethods.post(url=post_url, body=json_for_create_new_place)
-        print(post_response.text)
-        return post_response
+        response_post = HttpMethods.post(url=post_url, body=json_for_create_new_place)
+        print(response_post.text)
+        return response_post
 
     @staticmethod
     def get_new_place(place_id):
@@ -47,19 +48,21 @@ class GoogleMapsApi:
         print(response_get.text)
         return response_get
 
+    @staticmethod
+    def put_new_place(place_id, address):
+        """Метод для изменения новой локации"""
+        put_resource = '/maps/api/place/update/json'  # ресурс метода PUT
+        put_url = base_url + put_resource + key + '&place_id=' + place_id
+        print(put_url)
 
-
-
-
-
-
-
-
-
-
-
-
-
+        json_for_update_new_location = {
+            "place_id": place_id,
+            "address": address,
+            "key": "qaclick123"
+        }
+        response_put = HttpMethods.put(put_url, json_for_update_new_location)
+        print(response_put.text)
+        return response_put
 
 
 
