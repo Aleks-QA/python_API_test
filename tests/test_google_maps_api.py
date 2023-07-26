@@ -3,10 +3,10 @@ from utils.api import GoogleMapsApi
 
 
 class TestCreatePlace:
-    """Создание, изменение и удаление новой локации"""
+    """Тест-кейсы"""
 
     def test_create_new_place(self):
-
+        """Создание, изменение и удаление новой локации"""
         print("\nМетод POST")
         response_post = GoogleMapsApi.create_new_place()
         check_post = response_post.json()
