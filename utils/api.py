@@ -64,7 +64,6 @@ class GoogleMapsApi:
         print(response_put.text)
         return response_put
 
-
     @staticmethod
     def delete_new_place(place_id):
         """Метод для удаления новой локации"""
