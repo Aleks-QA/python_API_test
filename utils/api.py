@@ -1,15 +1,11 @@
-import json
-
 from utils.http_methods import HttpMethods
-
-"""Методы для тестирования Google Maps API"""
-
-base_url = "https://rahulshettyacademy.com"  # Базовая URL
-key = "?key=qaclick123"  # Параметр для всех запросов
 
 
 class GoogleMapsApi:
-    """Основные методы для работы с локациями"""
+    """Основные методы для тестирования Google Maps API"""
+
+    base_url = "https://rahulshettyacademy.com"  # Базовая URL
+    key = "?key=qaclick123"  # Параметр для всех запросов
 
     @staticmethod
     def create_new_place():
@@ -31,7 +27,7 @@ class GoogleMapsApi:
         }
 
         post_resource = '/maps/api/place/add/json'  # ресурс метода POST
-        post_url = base_url + post_resource
+        post_url = GoogleMapsApi.base_url + post_resource
         print(post_url)
         response_post = HttpMethods.post(url=post_url, body=json_for_create_new_place)
         print(response_post.text)
@@ -41,7 +37,7 @@ class GoogleMapsApi:
     def get_new_place(place_id):
         """Метод для проверки новой локации"""
         get_resource = '/maps/api/place/get/json'  # ресурс метода GET
-        get_url = base_url + get_resource + key + '&place_id=' + place_id
+        get_url = GoogleMapsApi.base_url + get_resource + GoogleMapsApi.key + '&place_id=' + place_id
         print(get_url)
 
         response_get = HttpMethods.get(url=get_url)
@@ -52,7 +48,7 @@ class GoogleMapsApi:
     def put_new_place(place_id, address):
         """Метод для изменения новой локации"""
         put_resource = '/maps/api/place/update/json'  # ресурс метода PUT
-        put_url = base_url + put_resource + key + '&place_id=' + place_id
+        put_url = GoogleMapsApi.base_url + put_resource + GoogleMapsApi.key + '&place_id=' + place_id
         print(put_url)
 
         json_for_update_new_location = {
@@ -67,8 +63,8 @@ class GoogleMapsApi:
     @staticmethod
     def delete_new_place(place_id):
         """Метод для удаления новой локации"""
-        delete_resource = '/maps/api/place/delete/json'  # ресурс метода PUT
-        delete_url = base_url + delete_resource + key
+        delete_resource = '/maps/api/place/delete/json'  # ресурс метода DELETE
+        delete_url = GoogleMapsApi.base_url + delete_resource + GoogleMapsApi.key
         print(delete_url)
 
         json_for_delete_new_location = {"place_id": place_id}
