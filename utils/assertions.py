@@ -1,5 +1,4 @@
 import json
-
 import allure
 
 
@@ -19,7 +18,6 @@ class Assertions:
         """Checking for the presence of a key in a JSON response"""
         with allure.step(f"Checking for the presence of a key '{field_name}' in a JSON response"):
             try:
-
                 response_as_dict = response.json()
             except json.JSONDecodeError:
                 assert False, f"\nResponse is not in JSON format. Response text is '{response.text}'\n"
@@ -40,7 +38,6 @@ class Assertions:
                 assert name in response_as_dict, f"\nResponse JSON doesn't have key '{name}'\n"
             print(f"Success, the response JSON has the required keys: '{names}'")
 
-
     @staticmethod
     def assert_json_value_by_name(response, field_name, expected_value):  # Name - ключ по которому ищем
         """Comparison of the actual value with the expected value"""
@@ -51,7 +48,9 @@ class Assertions:
                 assert False, f"\nResponse is not in JSON format. Response text is '{response.text}'\n"
 
             assert field_name in response_as_dict, f"\nResponse JSON doesn't have key '{field_name}'\n"
-            error_massage_return = "Error, actual value does not match the expected value" + ': ' + str(response_as_dict[field_name]) + ' != ' + str(expected_value)
+            error_massage_return = "Error, actual value does not match the expected value" + ': ' + \
+                                   str(response_as_dict[field_name]) + ' != ' + str(expected_value)
+
             assert response_as_dict[field_name] == expected_value, error_massage_return
             print(f"Success, expected value received: '{expected_value}' == '{response_as_dict[field_name]}'")
 
@@ -65,7 +64,9 @@ class Assertions:
                 assert False, f"\nResponse is not in JSON format. Response text is '{response.text}'\n"
 
             assert field_name in response_as_dict, f"\nResponse JSON doesn't have key '{field_name}'\n"
-            error_massage_return = "Error, the received value does not contain the required word" + ': ' + str(response_as_dict[field_name]) + ' not included ' + str(search_word)
+            error_massage_return = "Error, the received value does not contain the required word" + ': ' + \
+                                   str(response_as_dict[field_name]) + ' not included ' + str(search_word)
+
             assert search_word in response_as_dict[field_name], error_massage_return
             print(f"Success, the received value contains the required word: '{response_as_dict[field_name]}' contains '{search_word}'")
 
