@@ -1,0 +1,6 @@
+.idea
+.pytest_cache
+logs
+test_results/
+venv/
+debag.py
