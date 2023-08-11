@@ -3,13 +3,14 @@ from utils.api import GoogleMapsApi
 from utils.assertions import Assertions
 
 
-@allure.epic("Test create place")
+@allure.epic("Test create place 'Google Maps API'")
 class TestCreatePlace:
-    """Тест-кейсы"""
+    """Проверка создания локаций Google Maps API"""
 
     @allure.description("Creating, modifying and deleting a new location")
     def test_create_new_place(self):
         """Создание, изменение и удаление новой локации"""
+
         print("\nМетод POST - создание новой локации")
         response_post = GoogleMapsApi.create_new_place()
         check_post = response_post.json()
@@ -23,8 +24,6 @@ class TestCreatePlace:
         print("\nМетод GET POST - проверка создания новой локации")
         response_get = GoogleMapsApi.get_new_place(place_id=place_id)
         Assertions.assert_status_code(response_get, 200)
-        # list_keys = list(json.loads(response_get.text))  # Получить список ключей из JSON
-        # print(list_keys)
         expected_keys = ['location', 'accuracy', 'name', 'phone_number', 'address', 'types', 'website', 'language']
         Assertions.assert_json_has_keys(response_get, expected_keys)
         Assertions.assert_json_value_by_name(response_get, "address", 'street')
